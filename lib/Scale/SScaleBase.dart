@@ -1,8 +1,11 @@
+import 'package:utilities/Scale/SScale.dart';
+
+/// Abstract class for [SScale]
 abstract class SingletonScaleBase {
 
 	double x=1.0, y=1.0;
 	double _baseMultiplier=0;
-	double aproxResolution;
+	double approxResolution;
 	bool _isLandScape;
 
 	double get currentX => x;
@@ -12,6 +15,7 @@ abstract class SingletonScaleBase {
 	double get getBaseMultiplier => _baseMultiplier;
 	set baseMultiplier(double baseMultiplier) => _baseMultiplier =baseMultiplier;
 
+	/// Initialize screen's [x] and [y] values.
 	void setXY(double currentX, double currentY)
 	{
 		x=currentX;

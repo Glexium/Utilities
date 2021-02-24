@@ -9,6 +9,10 @@ class DecimalTextInputFormatter extends TextInputFormatter {
 
 	final int decimalRange;
 
+	/// This override [formatEditUpdate] to allow decimal range.
+	///
+	/// The value of [decimalRange] it is used to determine the decimal range allowed
+	/// in a text input.
 	@override
 	TextEditingValue formatEditUpdate(
 			TextEditingValue oldValue, // unused.
@@ -25,13 +29,11 @@ class DecimalTextInputFormatter extends TextInputFormatter {
 				newSelection = oldValue.selection;
 			} else if (value == ".") {
 				truncated = "0.";
-
 				newSelection = newValue.selection.copyWith(
 					baseOffset: math.min(truncated.length, truncated.length + 1),
 					extentOffset: math.min(truncated.length, truncated.length + 1),
 				);
 			}
-
 			return TextEditingValue(
 				text: truncated,
 				selection: newSelection,

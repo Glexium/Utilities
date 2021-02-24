@@ -1,4 +1,3 @@
-
 class Node {
 
 	dynamic value;

@@ -6,14 +6,19 @@
 //import 'package:gson/gson.dart'; gson: ^0.1.4
 import 'package:shared_preferences/shared_preferences.dart';
 
+/// Types of data available
 enum SharedType { Boolean, Double, Integer, StringVal }
 
 //based on shared_preference_project
+/// [StorageUtil] is for stored preferences and read them.
 class StorageUtil
 {
 	static StorageUtil _storageUtil;
 	static SharedPreferences _preferences;
 
+	/// It gets a 'Future' instance of [StorageUtil]
+	///
+	/// It check if [_storageUtil] exist, if not creates one and then return it.
 	static Future getInstance() async {
 		if (_storageUtil == null) {
 			// keep local instance till it is fully initialized.
@@ -27,12 +32,18 @@ class StorageUtil
 	Future _init() async {
 		_preferences = await SharedPreferences.getInstance();
 	}
-	// get string
+
+	/// Returns a string of a [key] stored.
+	///
+	/// If this [key] is not found it returns a default value.
 	static String getString(String key, {String defValue = ''}) {
 		if (_preferences == null) return defValue;
 		return _preferences.getString(key) ?? defValue;
 	}
-	// put string
+
+	/// Returns a future after stored a [key] with a [value]
+	///
+	/// It returns a Future to give time to stored the data.
 	static Future putString(String key, String value) {
 		if (_preferences == null) return null;
 		return _preferences.setString(key, value);
@@ -51,7 +62,13 @@ class StorageUtil
 		return Gson().decode(_preferences.getString(key) ?? defValue);
 	}*/
 
-	static Future addPreference(String name, SharedType type, Object value) async
+	/// Returns a Future after stored a preference.
+	///
+	/// To add a preference it requires [name], [type] and [value],
+	/// if there is no instance it wait for [getInstance] to create one, because
+	/// if it doesn't wait it will crash with a [NullPointerException]
+	/// then it set [name] and [value].
+	static Future addPreference(String name, SharedType type, dynamic value) async
 	{
 		if (_preferences == null) await getInstance();
 		switch (type) {
@@ -66,10 +83,16 @@ class StorageUtil
 		}
 	}
 
-	static Future<Object> getPreference(String name, SharedType type) async
+	/// Returns a Future with a 'dynamic' value of a preference.
+	///
+	/// It requires [name] and [type] of the preference.
+	/// if there is no instance it wait for [getInstance] to create one, because
+	/// if it doesn't wait it will crash with a [NullPointerException],
+	/// it used future as a return value in case of [_preferences] is not initialized.
+	static Future<dynamic> getPreference(String name, SharedType type) async
 	{
 		if (_preferences == null) await getInstance();
-		Object obj;
+		dynamic obj;
 		switch (type) {
 			case SharedType.Boolean:
 				obj = _preferences.getBool(name);
@@ -87,6 +110,10 @@ class StorageUtil
 		return obj;
 	}
 
+	/// Remove al preferences stored and returns a future
+	///
+	/// if there is no instance it wait for [getInstance] to create one
+	/// and then clear all preferences.
 	static Future clearPreferences() async
 	{
 		if (_preferences == null) getInstance();
