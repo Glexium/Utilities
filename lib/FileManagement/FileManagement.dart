@@ -77,12 +77,12 @@ class FileManagement
 				final fileCache = EFile(file.getFileCache.getId, file.getFileCache.getName,
 						file.getFileCache.getUpdatedAt);
 				cacheDao.insertFile(fileCache);
-				var response = await get(file.getFileCache.getURL);
+				var response = await get(Uri.parse(file.getFileCache.getURL));
 				FileManagement.saveFile(
 						file.getFileCache.getId.toString() + ext, response.bodyBytes);
 			} else {
 				if (data.updatedAt != file.getFileCache.getUpdatedAt) {
-					var response = await get(file.getFileCache.getURL);
+					var response = await get(Uri.parse(file.getFileCache.getURL));
 					EFile update =
 					EFile(data.id, data.name, file.getFileCache.getUpdatedAt);
 					await cacheDao.updateFileFromCache(update);
