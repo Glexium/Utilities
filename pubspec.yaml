@@ -13,10 +13,14 @@ dependencies:
     sdk: flutter
   path_provider: ^1.6.27
   universal_io: ^1.0.2
+  floor: ^0.19.1
+  intl: ^0.17.0
+  http: ^0.13.0
   shared_preferences: ^0.5.12+4
-  intl: ^0.16.1
 
 dev_dependencies:
+  floor_generator: ^0.19.1
+  build_runner: ^1.11.1
   flutter_test:
     sdk: flutter
 
