@@ -11,12 +11,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  path_provider: ^1.6.27
+  shared_preferences: ^2.0.0-nullsafety.1
+  path_provider: ^2.0.0-nullsafety
   universal_io: ^1.0.2
   floor: ^0.19.1
   intl: ^0.17.0
   http: ^0.13.0
-  shared_preferences: ^0.5.12+4
 
 dev_dependencies:
   floor_generator: ^0.19.1
