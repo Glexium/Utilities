@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/widgets.dart';
-import 'package:universal_io/prefer_universal/io.dart';
+import 'package:universal_io/io.dart';
 
 import 'SScaleBase.dart';
 

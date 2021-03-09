@@ -1,5 +1,5 @@
 import 'package:intl/intl.dart';
-import 'package:universal_io/prefer_universal/io.dart';
+import 'package:universal_io/io.dart';
 
 class DateUtil {
   static String getUSToLocalDate(String value, {String valueFormat = 'yyyy-MM-dd'}) {

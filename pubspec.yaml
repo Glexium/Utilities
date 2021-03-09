@@ -1,6 +1,6 @@
 name: utilities
 description: Utilities
-version: 0.0.1
+version: 0.0.3
 author:
 homepage:
 
@@ -13,13 +13,13 @@ dependencies:
     sdk: flutter
   shared_preferences: ^2.0.0-nullsafety.1
   path_provider: ^2.0.0-nullsafety
-  universal_io: ^1.0.2
-  floor: ^0.19.1
+  universal_io: ^2.0.0
+  floor: ^1.0.0
   intl: ^0.17.0
   http: ^0.13.0
 
 dev_dependencies:
-  floor_generator: ^0.19.1
+  floor_generator: ^1.0.0
   build_runner: ^1.11.1
   flutter_test:
     sdk: flutter
