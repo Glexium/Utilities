@@ -1,8 +1,8 @@
 name: utilities
 description: Utilities
-version: 0.0.3
+version: 0.0.4
 author:
-homepage:
+homepage: ''
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -11,16 +11,16 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  shared_preferences: ^2.0.0-nullsafety.1
+  shared_preferences: ^2.0.5
   path_provider: ^2.0.0-nullsafety
-  universal_io: ^2.0.0
-  floor: ^1.0.0
+  universal_io: ^2.0.3
+  floor: ^1.0.1
   intl: ^0.17.0
-  http: ^0.13.0
+  http: ^0.13.1
 
 dev_dependencies:
-  floor_generator: ^1.0.0
-  build_runner: ^1.11.1
+  floor_generator: ^1.0.1
+  build_runner: ^1.11.5
   flutter_test:
     sdk: flutter
 
