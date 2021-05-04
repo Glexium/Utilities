@@ -134,12 +134,6 @@ class FileManagement
 				cacheDao.updateFileFromCache(data);
 				FileManagement.saveFile(file.getName, response.bodyBytes);
 			}
-			else if(!File(file.getURL).existsSync())
-			{
-				var response = await get(Uri.parse(file.getURL));
-				FileManagement.saveFile(
-						file.getName, response.bodyBytes);
-			}
 		}
 		String originalUrl = file.getURL;
 		file.setURL = await FileManagement.getFilePath(file.getName);
