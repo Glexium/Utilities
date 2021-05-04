@@ -90,8 +90,17 @@ class FileManagement
 							file.getFileCache.getId.toString() + ext, response.bodyBytes);
 				}
 			}
+			String originalUrl = file.getFileCache.getURL;
 			file.getFileCache.setURL = await FileManagement
 					.getFilePath(file.getFileCache.getId.toString() + ext);
+			if(!File(file.getFileCache.getURL).existsSync())
+			{
+				var response = await get(Uri.parse(originalUrl));
+				FileManagement.saveFile(
+						file.getFileCache.getId.toString() + ext, response.bodyBytes);
+				file.getFileCache.setURL = await FileManagement
+						.getFilePath(file.getFileCache.getId.toString() + ext);
+			}
 		}
 		return files;
 	}
@@ -125,8 +134,21 @@ class FileManagement
 				cacheDao.updateFileFromCache(data);
 				FileManagement.saveFile(file.getName, response.bodyBytes);
 			}
+			else if(!File(file.getURL).existsSync())
+			{
+				var response = await get(Uri.parse(file.getURL));
+				FileManagement.saveFile(
+						file.getName, response.bodyBytes);
+			}
 		}
+		String originalUrl = file.getURL;
 		file.setURL = await FileManagement.getFilePath(file.getName);
+		if(!File(file.getURL).existsSync())
+		{
+			var response = await get(Uri.parse(originalUrl));
+			FileManagement.saveFile(file.getName, response.bodyBytes);
+			file.setURL = await FileManagement.getFilePath(file.getName);
+		}
 		return file;
 	}
 
