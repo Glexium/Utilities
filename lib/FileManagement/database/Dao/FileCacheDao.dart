@@ -7,13 +7,13 @@ abstract class FileCacheDao {
 	Future<List<EFile>> getFileCache();
 
 	@Query('SELECT * FROM EFile WHERE id = :id')
-	Future<EFile> findFileById(int id);
+	Future<EFile?> findFileById(int id);
 
 	@Query('SELECT * FROM EFile WHERE name = :name')
-	Stream<EFile> findFileByName(int id);
+	Stream<EFile?> findFileByName(String name);
 
 	@Query('DELETE FROM EFile WHERE id = :id')
-	Stream<EFile> deleteFileById(int id);
+	Stream<EFile?> deleteFileById(int id);
 
 	@insert
 	Future<void> insertFile(EFile eFile);

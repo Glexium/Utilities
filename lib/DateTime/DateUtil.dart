@@ -15,7 +15,7 @@ class DateUtil {
     return DateFormat(valueFormat).format(date); //date!=null?sdf.format(date):"0";
   }
 
-  static String getDateFormatted(String value, {String localFormatVal, String locale, String valueFormat = 'yyyy-MM-dd HH:mm:ss'}) {
+  static String getDateFormatted(String value, {String? localFormatVal, String? locale, String valueFormat = 'yyyy-MM-dd HH:mm:ss'}) {
     if (value == '' || value == 'null' || value == '0000-00-00 00:00:00')
       return '0';
     DateTime dateFormatted = DateFormat(valueFormat).parse(value);
@@ -23,7 +23,7 @@ class DateUtil {
     return DateFormat(format, locale??getLocale()).format(dateFormatted);
   }
 
-  static String getDay(String value, {String locale, String valueFormat = 'yyyy-MM-dd HH:mm:ss'}) {
+  static String getDay(String value, {String? locale, String valueFormat = 'yyyy-MM-dd HH:mm:ss'}) {
     if (value == '' || value == 'null' || value == '0000-00-00 00:00:00')
       return '0';
     DateTime dateFormatted = DateFormat(valueFormat).parse(value);
@@ -50,9 +50,9 @@ class DateUtil {
     return DateFormat('yyyy-MM-dd').format(date);
   }
 
-  String subtractFromNowWithoutHour({int years, int months, int days, bool dayOne, bool monthOne}) {
+  String subtractFromNowWithoutHour({int? years, int? months, int? days, bool? dayOne, bool? monthOne}) {
     var date = DateTime.now();
-    int day = dayOne==true?1:date.day-days??0;
+    int day = dayOne==true?1:date.day-days!;
     int month = monthOne==true?1:date.month - (months??0);
     var newDate = DateTime(date.year-(years??0), month, day);
     return DateFormat('yyyy-MM-dd').format(newDate);
@@ -61,7 +61,7 @@ class DateUtil {
   static String getFullDateFormatted(String value, { String valueFormat = 'yyyy-MM-dd HH:mm:ss' }) {
     if (value == '') return '0';
     DateTime date = DateFormat(valueFormat).parse(value).toLocal();
-    return date != null ? date.toString() : '0';
+    return date.toString();
   }
 
   static String getDateTextFormatted(DateTime date) {

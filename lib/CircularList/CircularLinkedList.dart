@@ -3,13 +3,13 @@ import 'Node.dart';
 
 class CircularLinkedList {
 
-	Node head;
-	Node tail;
+	Node? head;
+	late Node tail;
 
 	/// Initiates [CircularLinkedList] with optional nodes.
 	///
 	/// This list of nodes is dynamic, so it can be any type of value.
-	CircularLinkedList({List<dynamic> nodes})
+	CircularLinkedList({required List<dynamic> nodes})
 	{
 		addAllNodes(nodes);
 	}
@@ -48,12 +48,12 @@ class CircularLinkedList {
 	/// if it is found return 'true', if not update [currentNode] with [currentNode.nextNode],
 	/// if [searchValue] is not found it returns 'false'.
 	bool containsNode(dynamic searchValue) {
-		Node currentNode = head;
+		Node? currentNode = head;
 		if (head == null)
 			return false;
 		else {
 			do {
-				if (currentNode.value == searchValue) {
+				if (currentNode!.value == searchValue) {
 					return true;
 				}
 				currentNode = currentNode.nextNode;
@@ -70,12 +70,12 @@ class CircularLinkedList {
 	/// if not update [currentNode] with [currentNode.nextNode],
 	/// if [newHead] is not found it returns 'false'.
 	bool changeNodeHead(dynamic newHead) {
-		Node currentNode = head;
+		Node? currentNode = head;
 		if (head == null) {
 			return false;
 		} else {
 			do {
-				if (currentNode.value == newHead) {
+				if (currentNode!.value == newHead) {
 					head=currentNode;
 					return true;
 				}
@@ -94,15 +94,15 @@ class CircularLinkedList {
 	/// if not then it checks all nodes one by one for [valueToDelete] while [currentNode] is not the same as [head]
 	/// then if it is found it changes the value of [currentNode.nextNode] with [nextNode.nextNode].
 	void deleteNode(dynamic valueToDelete) {
-		Node currentNode = head;
+		Node? currentNode = head;
 		if (head != null) {
-			if (currentNode.value == valueToDelete) {
+			if (currentNode!.value == valueToDelete) {
 				//Note, check if tail.nextNode = head.nextNode works the same
-				head = head.nextNode;
+				head = head!.nextNode;
 				tail.nextNode = head;
 			} else {
 				do {
-					Node nextNode = currentNode.nextNode;
+					Node nextNode = currentNode!.nextNode!;
 					if (nextNode.value == valueToDelete) {
 						currentNode.nextNode = nextNode.nextNode;
 						break;
@@ -117,10 +117,10 @@ class CircularLinkedList {
 	///
 	/// It prints all nodes of [CircularLinkedList]
 	void traverseList() {
-		Node currentNode = head;
+		Node? currentNode = head;
 		if (head != null) {
 			do {
-				currentNode = currentNode.nextNode;
+				currentNode = currentNode!.nextNode;
 				print(currentNode);
 			} while (currentNode != head);
 		}
@@ -133,10 +133,10 @@ class CircularLinkedList {
 	List<dynamic> getNewList()
 	{
 		List<dynamic> nodes = List.empty(growable: true);
-		Node currentNode = head;
+		Node? currentNode = head;
 		if (head != null) {
 			do {
-				nodes.add(currentNode.value);
+				nodes.add(currentNode!.value);
 				currentNode = currentNode.nextNode;
 			} while (currentNode != head);
 		}

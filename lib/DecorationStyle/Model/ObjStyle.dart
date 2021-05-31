@@ -2,8 +2,8 @@ import '../StyleMe.dart';
 
 class ObjStyle
 {
-	DecorationType _dType;
-	ComponentType _cType;
+	DecorationType? _dType;
+	ComponentType? _cType;
 	dynamic _value;
 
 	ObjStyle(DecorationType dType, ComponentType cType, dynamic value)

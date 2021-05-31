@@ -13,8 +13,8 @@ enum SharedType { Boolean, Double, Integer, StringVal }
 /// [StorageUtil] is for stored preferences and read them.
 class StorageUtil
 {
-	static StorageUtil _storageUtil;
-	static SharedPreferences _preferences;
+	static StorageUtil? _storageUtil;
+	static SharedPreferences? _preferences;
 
 	/// It gets a 'Future' instance of [StorageUtil]
 	///
@@ -38,15 +38,15 @@ class StorageUtil
 	/// If this [key] is not found it returns a default value.
 	static String getString(String key, {String defValue = ''}) {
 		if (_preferences == null) return defValue;
-		return _preferences.getString(key) ?? defValue;
+		return _preferences!.getString(key) ?? defValue;
 	}
 
 	/// Returns a future after stored a [key] with a [value]
 	///
 	/// It returns a Future to give time to stored the data.
-	static Future putString(String key, String value) {
+	static Future? putString(String key, String value) {
 		if (_preferences == null) return null;
-		return _preferences.setString(key, value);
+		return _preferences!.setString(key, value);
 	}
 
 	/*
@@ -73,13 +73,13 @@ class StorageUtil
 		if (_preferences == null) await getInstance();
 		switch (type) {
 			case SharedType.Boolean:
-				return await _preferences.setBool(name, value);
+				return await _preferences!.setBool(name, value);
 			case SharedType.Double:
-				return await _preferences.setDouble(name, value);
+				return await _preferences!.setDouble(name, value);
 			case SharedType.Integer:
-				return await _preferences.setInt(name, value);
+				return await _preferences!.setInt(name, value);
 			case SharedType.StringVal:
-				return await _preferences.setString(name, value);
+				return await _preferences!.setString(name, value);
 		}
 	}
 
@@ -95,16 +95,16 @@ class StorageUtil
 		dynamic obj;
 		switch (type) {
 			case SharedType.Boolean:
-				obj = _preferences.getBool(name);
+				obj = _preferences!.getBool(name);
 				break;
 			case SharedType.Double:
-				obj =  _preferences.getDouble(name);
+				obj =  _preferences!.getDouble(name);
 				break;
 			case SharedType.Integer:
-				obj = _preferences.getInt(name);
+				obj = _preferences!.getInt(name);
 				break;
 			case SharedType.StringVal:
-				obj = _preferences.getString(name);
+				obj = _preferences!.getString(name);
 				break;
 		}
 		return obj;
@@ -117,6 +117,6 @@ class StorageUtil
 	static Future clearPreferences() async
 	{
 		if (_preferences == null) getInstance();
-		await _preferences.clear();
+		await _preferences!.clear();
 	}
 }

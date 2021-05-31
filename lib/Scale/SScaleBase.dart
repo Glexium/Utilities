@@ -5,8 +5,8 @@ abstract class SingletonScaleBase {
 
 	double x=1.0, y=1.0;
 	double _baseMultiplier=0;
-	double approxResolution;
-	bool _isLandScape;
+	double approxResolution=1.0;
+	bool _isLandScape=false;
 
 	double get currentX => x;
 	double get currentY => y;

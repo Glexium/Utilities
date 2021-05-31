@@ -72,7 +72,7 @@ class FileManagement
 		final db = await $FloorAppDatabase.databaseBuilder(dataBaseName).build();
 		final cacheDao = db.getCache;
 		for (dynamic file in files) {
-			final data = await cacheDao.findFileById(file.getFileCache.getId);
+			final data = await cacheDao.findFileById(file.getFileCache.getId??-1);
 			if (data == null) {
 				final fileCache = EFile(file.getFileCache.getId, file.getFileCache.getName,
 						file.getFileCache.getUpdatedAt);
@@ -90,12 +90,12 @@ class FileManagement
 							file.getFileCache.getId.toString() + ext, response.bodyBytes);
 				}
 			}
-			String originalUrl = file.getFileCache.getURL;
+			String? originalUrl = file.getFileCache.getURL;
 			file.getFileCache.setURL = await FileManagement
 					.getFilePath(file.getFileCache.getId.toString() + ext);
 			if(!File(file.getFileCache.getURL).existsSync())
 			{
-				var response = await get(Uri.parse(originalUrl));
+				var response = await get(Uri.parse(originalUrl!));
 				FileManagement.saveFile(
 						file.getFileCache.getId.toString() + ext, response.bodyBytes);
 				file.getFileCache.setURL = await FileManagement
@@ -152,6 +152,9 @@ class FileManagement
 		final db = await $FloorAppDatabase.databaseBuilder(dataBaseName).build();
 		final cacheDao = db.getCache;
 		final data = await cacheDao.findFileById(id);
-		return await cacheDao.deleteFileFromCache(data);
+		if(data!=null)
+			return await cacheDao.deleteFileFromCache(data);
+		else
+			return 0;
 	}
 }
