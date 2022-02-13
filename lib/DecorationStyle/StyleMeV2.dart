@@ -21,18 +21,18 @@ enum DecorationType {
 /// Types of component to decorate.
 enum ComponentType { container, textField, cursor, label, hint, icon }
 
-abstract class StyleMe {
+abstract class StyleMeV2 {
   Set<dynamic>? decorations;
   Set<dynamic>? components;
   Set<dynamic>? themes;
-  StyleMe? _next;
+  StyleMeV2? _next;
 
-  StyleMe({this.themes, this.decorations, this.components});
+  StyleMeV2({this.themes, this.decorations, this.components});
 
   //bool get uDecoration => decorations!.containsAll(DecorationType.values);
   //bool get uComponents => components!.containsAll(ComponentType.values);
 
-  set next(StyleMe nextStyle) => _next = nextStyle;
+  set next(StyleMeV2 nextStyle) => _next = nextStyle;
 
   void addLevel(dynamic level) => decorations!.add(level);
   void addComponent(dynamic cType) => components!.add(cType);
