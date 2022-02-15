@@ -47,18 +47,20 @@ class CircularLinkedList {
 	/// It checks all nodes one by one for [searchValue] while [currentNode] is not the same as [head]
 	/// if it is found return 'true', if not update [currentNode] with [currentNode.nextNode],
 	/// if [searchValue] is not found it returns 'false'.
-	bool containsNode(dynamic searchValue) {
+	dynamic containsNode(dynamic searchValue, {bool returnIndex=false}) {
+		int index=0;
 		Node? currentNode = head;
 		if (head == null)
-			return false;
+			return returnIndex?index:false;
 		else {
 			do {
 				if (currentNode!.value == searchValue) {
-					return true;
+					return returnIndex?index:true;
 				}
+				index++;
 				currentNode = currentNode.nextNode;
 			} while (currentNode != head);
-			return false;
+			return returnIndex?index:false;
 		}
 	}
 
